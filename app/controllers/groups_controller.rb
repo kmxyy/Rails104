@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-  before_action :authenticate_user! , only: [:new, :edit, :show, :destroy]
+  before_action :authenticate_user! , only: [:new, :create, :edit, :show, :destroy]
 
   def index
   @groups=Group.all
@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
   end
   def create
     @group=Group.new(group_params)
+    @group.user=current_user
 
     if @group.save
 
